@@ -1,7 +1,7 @@
 
 ## metodo que tira caracteres especiais
 def takeOff(i):
-    specialChars = ['[',']','(',')',' ']
+    specialChars = ['[',']',' ']
     for specialChar in specialChars:
        i = i.replace(specialChar,'')
     return i 
@@ -38,24 +38,31 @@ def requestPerDay(log,dt):
             print(line,end=' ')
             print()
 ## Metodo que mostra requisiçoes que ocorreram em um mës
-def requestPerMonth(log):
+def requestPerMonth(log,month):
     lines = log.readlines()
-    dt = 'Mar/2015'
     for line in lines:
         line = line.split(' ')
-        if dt == line[3][4:12]:
+        if month == line[3][4:12]:
             print(line,end=' ')
             print()
 ## Metodo que mostra requisiçoes que ocorreram em um ano 
-def requestPerMonth(log):
+def requestPerYear(log,year):
     lines = log.readlines()
-    dt = '2016'
     for line in lines:
         line = line.split(' ')
-        if dt == line[3][8:12]:
+        if year == line[3][8:12]:
             print(line,end=' ')
             print()
 
+##Metodo que mostra requisicoes que vieram de um IP
+def requestPerIP(log,ip):
+    lines = log.readlines()
+    for line in lines:
+        line = line.split(' ')
+        if(ip in line[0]):
+            print(line)
+
+
 log = open('access.log','r')
 
-requestPerMonth(log)
+requestPerIP(log,'46.105.14.53')
